@@ -1,7 +1,8 @@
 class GiftsController < ApplicationController
+    include Pagy::Backend
     
     def index
-        @gifts = Gift.all
+        @pagy, @gifts = pagy(Gift.all, page: params[:page], items: 1)
     end
 
     def show
