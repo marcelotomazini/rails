@@ -27,7 +27,7 @@
     <p>
       <%= form.label :gifts %><br>
       <div class="form-group">
-        <%= form.collection_check_boxes(:gift_ids, Gift.all.order(title: :asc), :id, :title) do |b| %>
+        <%= form.collection_check_boxes(:gift_ids, @list_controller.available_gifts, :id, :title) do |b| %>
           <div class="row">
             <%= b.label(class: "check_box") do %>
               <%= render 'components/card', title: b.object.title, text: b.object.text %>

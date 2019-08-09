@@ -44,6 +44,10 @@ class ListsController < ApplicationController
         redirect_to lists_path
     end
 
+    def available_gifts
+        @pagy, @available_gifts = pagy(Gift.all, page: params[:page], items: 1)
+    end
+
     private
         def list_params
             params.require(:list).permit(:title, :text, gift_ids: [])
