@@ -1,0 +1,47 @@
+<%= form_with model: @list, local: true do |form| %>
+ 
+    <% if @list.errors.any? %>
+      <div id="error_explanation">
+        <h2>
+          <%= pluralize(@list.errors.count, "error") %> prohibited
+          this gift list from being saved:
+        </h2>
+        <ul>
+          <% @list.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+   
+    <p>
+      <%= form.label :title %><br>
+      <%= form.text_field :title %>
+    </p>
+   
+    <p>
+      <%= form.label :text %><br>
+      <%= form.text_area :text %>
+    </p>
+
+    <p>
+      <%= form.label :gifts %><br>
+      <div class="form-group">
+        <%= form.collection_check_boxes(:gift_ids, Gift.all.order(title: :asc), :id, :title) do |b| %>
+          <div class="row">
+            <%= b.label(class: "check_box") do %>
+              <%= render 'components/card', title: b.object.title, text: b.object.text %>
+              <div class="col-xs-4">
+                <%= b.check_box(class: "check_box") %>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </p>
+       
+    <p>
+      <%= form.submit %>
+    </p>
+   
+<% end %>

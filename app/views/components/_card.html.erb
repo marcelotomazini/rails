@@ -1,0 +1,11 @@
+<% title = yield.presence || local_assigns.fetch(:title) %>
+<% text = yield.presence || local_assigns.fetch(:text) %>
+<% return if title.blank? || text.blank? %>
+
+<div class="card" style="width: 18rem;">
+  <img class="card-img-top" src="/noimageavailable.png" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title"><%= title %></h5>
+    <p class="card-text"><%= text %></p>
+  </div>
+</div>

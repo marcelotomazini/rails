@@ -1,0 +1,12 @@
+<p>
+  <strong>Title:</strong>
+  <%= @gift.title %>
+</p>
+ 
+<p>
+  <strong>Text:</strong>
+  <%= @gift.text %>
+</p>
+
+<%= link_to 'Edit', edit_gift_path(@gift) %> |
+<%= link_to 'Back', gifts_path %>
